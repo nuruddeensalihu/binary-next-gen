@@ -6,7 +6,7 @@ import languages from '../_constants/languages';
 import { updateAppConfig } from '../_actions/AppConfigActions';
 import Perf from 'react-addons-perf';
 import languagePickerSelector from '../web/languagePickerSelector';
-import updatePriceProposalSubscription from '../_actions/TradeActions';
+import { updatePriceProposalSubscription } from '../_actions/TradeActions';
 
 @connect(languagePickerSelector)
 export default class LanguagePicker extends Component {
