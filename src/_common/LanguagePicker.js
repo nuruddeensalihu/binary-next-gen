@@ -5,13 +5,16 @@ import SelectGroup from '../_common/SelectGroup';
 import languages from '../_constants/languages';
 import { updateAppConfig } from '../_actions/AppConfigActions';
 import Perf from 'react-addons-perf';
+import languagePickerSelector from '../web/languagePickerSelector';
+import updatePriceProposalSubscription from '../_actions/TradeActions';
 
-@connect(state => ({ selected: state.appConfig.get('language') }))
+@connect(languagePickerSelector)
 export default class LanguagePicker extends Component {
 
     static propTypes = {
         selected: PropTypes.oneOf(languages.map(ln => ln.value)),
         dispatch: PropTypes.func.isRequired,
+        tradeIndexes: PropTypes.array.isRequired,
     };
 
     static defaultProps = {
@@ -19,7 +22,13 @@ export default class LanguagePicker extends Component {
     };
 
     updateLanguage(event) {
-        this.props.dispatch(updateAppConfig('language', event.target.value));
+        const { dispatch, tradeIndexes } = this.props;
+        dispatch(updateAppConfig('language', event.target.value));
+
+        Object.keys(tradeIndexes).forEach(key => {
+            dispatch(updatePriceProposalSubscription(key, null));
+        });
+
         LiveData.changeLanguage(event.target.value);
 
         Perf.start();
