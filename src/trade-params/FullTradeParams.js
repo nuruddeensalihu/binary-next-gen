@@ -74,6 +74,8 @@ export default class FullTradeParams extends Component {
         trade: PropTypes.object.isRequired,
         type: PropTypes.oneOf(['tick', 'full']).isRequired,
         ticks: PropTypes.array,
+        tradesCount: PropTypes.number.isRequired,
+        layoutN: PropTypes.number.isRequired,
     };
 
     constructor(props) {
@@ -368,7 +370,7 @@ export default class FullTradeParams extends Component {
     }
 
     render() {
-        const { actions, contract, disabled, index, trade, currency } = this.props;
+        const { actions, contract, disabled, index, trade, currency, tradesCount, layoutN } = this.props;
 
         /**
          * Race condition happen when contract is updated before tradeCategory (async)
@@ -395,13 +397,14 @@ export default class FullTradeParams extends Component {
         const showDuration = !!contractForType;
         const showDigitBarrier = categoryToUse === 'digits';
         const showSpreadBarrier = categoryToUse === 'spreads';
-
         return (
             <div className={styles.tradeParams} disabled={disabled}>
                 <AssetPickerDropDown
                     {...this.props}
                     selectedSymbol={trade.symbol}
                     selectedSymbolName={trade.symbolName}
+                    tradesCount={tradesCount}
+                    layoutN={layoutN}
                 />
                 <TradeTypeDropDown
                     {...this.props}

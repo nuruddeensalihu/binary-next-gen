@@ -501,6 +501,7 @@ select {
 #asset-picker-container {
     padding: .5rem;
     width: 20rem;
+    margin-left: 5%;
     min-width: 12rem;
     height: 80vh;
 }
@@ -927,10 +928,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 .drop-down {
     flex-basis: auto !important;
-    max-height: 90vh;
-    max-width: 90vw;
+    /*max-height: 90vh;
+    max-width: 90vw;*/
+    width: 27%;
     overflow: auto;
-    margin: 1rem;
+    /*margin: 1rem;*/
+    margin-left: 10%;
+    top:7%;
     background: white;
     position: absolute;
     z-index: 10000;

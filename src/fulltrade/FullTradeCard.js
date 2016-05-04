@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { BinaryChart } from 'binary-charts';
-// const BinaryChart = (props) => <div {...props} style={{ background: 'grey' }} />;
+//const BinaryChart = (props) => <div {...props} style={{ background: 'grey' }} />;
 import PurchaseFailed from '../_common/PurchaseFailed';
 import Modal from '../containers/Modal';
 import FullTradeParams from '../trade-params/FullTradeParams';
@@ -29,10 +29,12 @@ export default class FullTradeCard extends Component {
         trade: PropTypes.object.isRequired,
         type: PropTypes.oneOf(['tick', 'full']).isRequired,
         ticks: PropTypes.array,
+        tradesCount: PropTypes.number.isRequired,
+        layoutN: PropTypes.number.isRequired,
     };
 
     render() {
-        const { actions, index, marketIsOpen, trade, ticks } = this.props;
+        const { actions, index, marketIsOpen, trade, ticks, tradesCount, layoutN } = this.props;
         const { symbolName, lastBoughtContract } = trade;
 
         const contract = this.props.contract || mockedContract;
@@ -75,6 +77,8 @@ export default class FullTradeCard extends Component {
                         {...this.props}
                         disabled={disabled}
                         contract={contract}
+                        tradesCount={tradesCount}
+                        layoutN={layoutN}
                     />
                 }
             </div>

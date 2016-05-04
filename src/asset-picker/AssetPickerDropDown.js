@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import DropDown from '../containers/DropDown';
 import AssetPickerContainer from './AssetPickerContainer';
-
+import layoutHeight from './layoutAssetPickerHeight';
 export default class AssetPickerDropDown extends Component {
 
     shouldComponentUpdate = shouldPureComponentUpdate;
@@ -13,6 +13,8 @@ export default class AssetPickerDropDown extends Component {
         index: PropTypes.number.isRequired,
         selectedSymbol: PropTypes.string.isRequired,
         selectedSymbolName: PropTypes.string.isRequired,
+        tradesCount: PropTypes.number.isRequired,
+        layoutN: PropTypes.number.isRequired,
     };
 
     static contextTypes = {
@@ -37,10 +39,36 @@ export default class AssetPickerDropDown extends Component {
     }
 
     render() {
-        const { actions, index, selectedSymbol, selectedSymbolName } = this.props;
+        const { actions, index, selectedSymbol, selectedSymbolName, tradesCount, layoutN } = this.props;
         const { dropdownShown } = this.state;
+        const layoutPattern = layoutHeight(`layout${tradesCount}${layoutN}`);
+        const pattern = layoutPattern.pattern;
+        const layout = layoutPattern.layout;
+        console.log('the x is', pattern);
+        const style = {
+            height: (90 / pattern) + '%',
+        };
+        const defaultStyle = {
+            height: 45 + '%',
+        };
+        console.log('the style is', style);
+        const isExist = layout.indexOf(index);
         return (
             <div>
+             {isExist > -1 ?
+                <DropDown
+                    shown={dropdownShown}
+                    onClose={() => this.setState({ dropdownShown: false })}
+                    style={style}
+                >
+                    <AssetPickerContainer
+                        actions={actions}
+                        tradeIdx={index}
+                        selectedAsset={selectedSymbol}
+                    />
+                </DropDown>
+
+                :
                 <DropDown
                     shown={dropdownShown}
                     onClose={() => this.setState({ dropdownShown: false })}
@@ -51,6 +79,7 @@ export default class AssetPickerDropDown extends Component {
                         selectedAsset={selectedSymbol}
                     />
                 </DropDown>
+             }
                 <div
                     className="picker-label"
                     onMouseDown={::this.openAssetPicker}
