@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import M from '../_common/M';
-import NumberPlain from '../_common/NumberPlain';
+import M from 'binary-components/lib/M';
+import NumberPlain from 'binary-components/lib/NumberPlain';
 import PortfolioItem from './PortfolioItem';
 
 export default class PortfolioList extends Component {
@@ -29,7 +29,6 @@ export default class PortfolioList extends Component {
 						<th>
 							<M m="Indicative" />
 						</th>
-						{!compact && <th></th>}
 					</tr>
 				</thead>
 				<tbody>
@@ -48,7 +47,6 @@ export default class PortfolioList extends Component {
 						<th></th>
 						<th><NumberPlain currency="USD" value={purchaseTotal} /></th>
 						<th><NumberPlain currency="USD" value={indicativeTotal} /></th>
-						{!compact && <th></th>}
 					</tr>
 				</tfoot>
 			</table>

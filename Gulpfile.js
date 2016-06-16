@@ -4,15 +4,15 @@ const del = require('del');
 const file = require('gulp-file');
 const shell = require('gulp-shell');
 const ghPages = require('gulp-gh-pages');
-// const sass = require('gulp-sass');
+const sass = require('gulp-sass');
 // const electron = require('gulp-atom-electron');
 // const zip = require('gulp-vinyl-zip');
 
 const files = {
     dist: './dist',
     js: './src',
-    static: ['./www/**/*', './config.xml', './electron.js'],
-    sass: 'www/styles.sass',
+    static: ['./www/**/*', './config.xml', './electron.js', '!./www/**/*.scss'],
+    sass: './styles/*.scss',
 };
 
 process.env.NODE_ENV = 'production';
@@ -28,7 +28,12 @@ gulp.task('static', () =>
 
 gulp.task('styles', () =>
     gulp.src(files.sass)
-        .pipe(gulp.dest('dist'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(files.dist))
+);
+
+gulp.task('styles:watch', () =>
+    gulp.watch('./www/**/*.scss', ['styles'])
 );
 
 gulp.task('js', () =>
@@ -38,7 +43,7 @@ gulp.task('js', () =>
 );
 
 gulp.task('build', callback =>
-    runSequence('cleanup', ['static', 'js'], callback)
+    runSequence('cleanup', ['styles', 'static', 'js'], callback)
 );
 
 // gulp.task('download-electron', () =>

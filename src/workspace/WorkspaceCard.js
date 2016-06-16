@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
-import Resizer from '../_common/Resizer';
+import Resizer from 'binary-components/lib/Resizer';
 import TradesContainer from '../trades/TradesContainer';
 import WorkspaceRightPanel from './WorkspaceRightPanel';
-import Tab from '../_common/Tab';
-import TabList from '../_common/TabList';
+import Tab from 'binary-components/lib/Tab';
+import TabList from 'binary-components/lib/TabList';
 import ContractDetailsModal from './ContractDetailsModal';
 
 export default class WorkspaceCard extends Component {
@@ -17,7 +17,7 @@ export default class WorkspaceCard extends Component {
 		const { actions, workspace } = this.props;
 
 		return (
-			<div id="panels">
+			<div className="panels">
 				<ContractDetailsModal actions={actions} />
 				<TradesContainer
 					actions={actions}
@@ -46,7 +46,8 @@ export default class WorkspaceCard extends Component {
 					<Tab imgSrc="img/news.svg" text="News" />
 					<Tab imgSrc="img/ohlc.svg" text="Daily Prices" />
 					<Tab imgSrc="img/info.svg" text="Details" />
-					<Tab imgSrc="img/info.svg" text="Digit Stats" />
+					<Tab imgSrc="img/barchart.svg" text="Digit Stats" />
+					<Tab imgSrc="img/settings.svg" text="Settings" />
 				</TabList>
 			</div>
 		);

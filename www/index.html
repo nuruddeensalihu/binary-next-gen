@@ -11,11 +11,21 @@
     <link rel="stylesheet" href="https://borisyankov.github.io/binary-style/binary.css" />
     <link rel="stylesheet" href="styles.css" />
     <title>Binary.com - nextGen</title>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <style id="antiClickjack">body{display:none !important;}</style>
+    <script>
+        if (self === top) {
+            var antiClickjack = document.getElementById('antiClickjack');
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+            top.location = self.location;
+        }
+    </script>
 </head>
 
 <body>
 
-<div id="root" class="app">
+<div id="root" class="root app">
     <div class="mobile-page">
         <img class="spinner" src="/img/binary-symbol-logo.svg" />
     </div>

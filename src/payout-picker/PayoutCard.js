@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import NumberColored from '../_common/NumberColored';
-import M from '../_common/M';
-import Label from '../_common/Label';
+import NumberColored from 'binary-components/lib/NumberColored';
+import M from 'binary-components/lib/M';
+import Label from 'binary-components/lib/Label';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 export default class PayoutCard extends Component {
@@ -10,18 +10,19 @@ export default class PayoutCard extends Component {
 
     static propTypes = {
         currency: PropTypes.string.isRequired,
-        stake: PropTypes.number.isRequired,
-        payout: PropTypes.number.isRequired,
+        stake: PropTypes.number,
+        payout: PropTypes.number,
     };
 
     render() {
         const { currency, stake, payout } = this.props;
+
         const potentialProfitPercentage = ((payout - stake) * 100 / stake).toFixed(2);
 
         return (
-            <div className="payout-display">
+            <div className="param-row payout-display">
                 <Label text="Payout" />
-                <div>
+                {payout && stake && <div className="param-field">
                     <NumberColored
                         className="payout-value"
                         currency={currency}
@@ -29,7 +30,7 @@ export default class PayoutCard extends Component {
                         isProfit={v => v - stake}
                     />
                     <span> ({potentialProfitPercentage}% <M m="return" />)</span>
-                </div>
+                </div>}
             </div>
         );
     }

@@ -1,0 +1,431 @@
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.screen {
+    font-size: 12px;
+    flex-direction: column;
+}
+
+.screen, .root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.disabled {
+    opacity: 0.2;
+}
+
+.panels {
+    flex: 1;
+    display: flex;
+    max-height: calc(100% - 6rem);
+}
+
+.workspace-panel {
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+}
+
+table {
+    margin-bottom: 0;
+}
+
+.wide-form {
+    max-width: 420px;
+}
+
+.logo-text {
+    padding: 1rem;
+}
+
+.close-btn {
+    cursor: pointer;
+    box-shadow: none !important;
+    &:hover {
+        box-shadow: none !important;
+    }
+}
+
+[role=tablist] {
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+    &.vertical {
+        margin-bottom: 0;
+    }
+}
+
+header {
+    position: inherit;
+    width: 100%;
+    color: white;
+    display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+.number-positive {
+    color: $green;
+    white-space: nowrap;
+}
+
+.number-negative {
+    color: $red;
+    white-space: nowrap;
+}
+
+.full-screen-overlay {
+    z-index: 9999;
+}
+
+.drop-down {
+    display: flex;
+    max-height: 90vh;
+    max-width: 90vw;
+    overflow: auto;
+    background: white;
+    position: absolute;
+    z-index: 10000;
+    box-shadow: 0 0 1rem 0 rgba(black, .5);
+    border-radius: 2px;
+    + .full-screen-overlay {
+        background: rgba(black, .1);
+    }
+}
+
+.market-submarket-picker {
+    width: 100%;
+}
+
+.range-selector-items {
+    display: flex;
+    width: 100%;
+    margin: 0.25rem 0.25rem 0;
+    justify-content: space-between;
+}
+
+[role=tablist] {
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+    &.vertical {
+        margin-bottom: 0;
+    }
+}
+
+input[type=range] {
+    width: 100%;
+}
+
+.sidebar-btn {
+    padding: 0;
+    > img {
+        width: 3.5rem;
+        padding: 1rem;
+    }
+}
+
+.toolbar-btn {
+    line-height: 3.5;
+    padding: 0 1rem;
+    > img {
+        width: 1.5rem;
+        height: 100%;
+    }
+    &:hover > .toolbar-hint {
+        visibility: visible;
+    }
+}
+.buy-btn {
+    font-size: 1.25em;
+    padding: 0.5rem;
+    width: 100%;
+}
+.buy-again-btn {
+    font-size: 1.25em;
+    padding: 0.5rem;
+}
+.sell-at-market-btn {
+    font-size: 1.25em;
+    padding: 0.5rem;
+}
+fieldset {
+    margin-bottom: 0.5rem;
+}
+.back-btn {
+    width: 3.5rem;
+    padding: 0.75rem;
+}
+.tick-sparklines {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.radio-selector {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    border-radius: 2px;
+    background-color: rgba($COLOR_BRAND_BLUE, .1);
+}
+.radio-item {
+    flex: 1;
+    label {
+        cursor: pointer;
+        line-height: 2;
+        display: block;
+        text-align: center;
+    }
+    img {
+        margin-right: 0.5rem;
+        width: 1.5rem;
+        background-color: white;
+        box-shadow: 0 0 0 1px white;
+    }
+    input {
+        display: none;
+    }
+    input[type=radio]:checked + label {
+        background: $COLOR_BRAND_BLUE;
+        border-radius: 2px;
+        color: white;
+    }
+}
+.web-page {
+    width: 100%;
+    height: 100%;
+}
+.spacer {
+    flex: 1;
+}
+
+.toolbar-hint {
+    position: absolute;
+    padding: 0.75rem;
+    margin-top: -.75rem;
+    margin-left: 1rem;
+    width: 10rem;
+    border-radius: 2px;
+    background: $COLOR_BRAND_BLUE;
+    visibility: hidden;
+}
+.button-list {
+    display: inline;
+}
+.name-val-pairs {
+    display: flex;
+    flex-direction: column;
+}
+.name-val-pair {
+    display: flex;
+    * {
+        flex: 0 1 180px;
+    }
+    > .name {
+        font-weight: 700;
+    }
+}
+select {
+    background-color: white;
+}
+.resizer-vertical {
+    background: $COLOR_BRAND_BLUE;
+    cursor: ew-resize;
+    width: 6px;
+    display: flex;
+    align-items: center;
+    .resizer-handle {
+        width: 4px;
+        margin: 3px 0;
+        height: 2rem;
+        border-left: 1px dotted rgba(white, .5);
+        border-right: 1px dotted rgba(white, .5);
+    }
+}
+.resizer-horizontal {
+    background: $COLOR_BRAND_BLUE;
+    cursor: ns-resize;
+    height: 0.25rem;
+}
+.startup-content {
+    display: flex;
+    flex: 1;
+    max-width: 360px;
+    margin: auto;
+    flex-direction: column;
+    align-content: space-between;
+    input {
+        width: 100%;
+    }
+    .button {
+        width: 100%;
+    }
+    select {
+        width: 100%;
+    }
+    .btn-secondary {
+        width: 100%;
+    }
+}
+#theme-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.language-picker {
+    width: 100%;
+    margin: 0.5rem;
+}
+.theme-picker {
+    width: 100%;
+}
+#new-trade-btn {
+    margin: 0.5rem;
+}
+#deposit-btn {
+    margin: 0.5rem;
+}
+#clock {
+    margin: 0.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo {
+    margin: 0.5rem;
+    img {
+        height: 2rem;
+        &:nth-child(2) {
+            margin-left: 0.25rem;
+            height: 1.75rem;
+        }
+    }
+}
+
+.balance {
+    font-size: 1.5rem;
+    line-height: 2 !important;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+div[role=tabpanel] {
+    background: $red;
+}
+#footer {
+    display: flex;
+    height: 3rem;
+}
+.centerer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0.5rem;
+}
+
+td {
+    &.left {
+        text-align: left;
+    }
+    &.right {
+        text-align: right;
+    }
+    &.row-id {
+        font-weight: bold;
+    }
+}
+
+th {
+    &.left {
+        text-align: left;
+    }
+    &.right {
+        text-align: right;
+    }
+}
+
+.open-notice, .closed-notice {
+    padding: 0.2em 0.4em;
+    opacity: 0.75;
+    font-size: 80%;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 2px;
+}
+.open-notice {
+    background: $green;
+}
+.closed-notice {
+    background: $red;
+}
+.modal {
+    max-height: 100%;
+    min-width: 320px;
+    overflow: auto;
+    width: 80%;
+}
+
+.info-icon {
+    background-color: rgba($COLOR_BRAND_BLUE, .5);
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    border-radius: 10px;
+}
+.tooltip {
+    background: rgba(white, .9);
+    border: 1px solid rgba($COLOR_BRAND_BLUE, .25);
+    color: $COLOR_BRAND_BLUE;
+    font-weight: bold;
+    padding: 0.125rem 0.25rem;
+    border-radius: 2px;
+    position: absolute;
+    display: none;
+}
+.btn-flat {
+    color: $COLOR_BRAND_BLUE;
+    font-size: 2rem;
+    line-height: 2rem;
+    padding: 0;
+    height: 2rem;
+    width: 2rem;
+    background: rgba($COLOR_BRAND_BLUE, .1);
+    box-shadow: none;
+    &:hover {
+        background: rgba($COLOR_BRAND_BLUE, .1) !important;
+    }
+}
+
+div[role=tab] .close-btn {
+    background: $COLOR_BRAND_BLUE;
+    fill: white;
+}
+nav.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    background: $COLOR_BRAND_BLUE;
+    color: white;
+    margin: -3.5rem -.5rem -.5rem;
+}
+.sidebar span {
+    color: white;
+}
+
+#right-tab-list > div[role=tab][aria-selected=true] {
+    box-shadow: inset -2px 0 0 0 $COLOR_BRAND_ORANGE;
+}
+.close-svg path {
+    fill: $COLOR_BRAND_BLUE;
+}
+*:hover + .tooltip {
+    display: block;
+}
+.account-info {
+    background: $COLOR_BRAND_ORANGE;
+    padding: 0.5rem;
+}

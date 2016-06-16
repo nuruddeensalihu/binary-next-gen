@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import Label from '../_common/Label';
+import Label from 'binary-components/lib/Label';
 import DropDown from '../containers/DropDown';
-import DownArrow from '../_common/DownArrow';
+import DownArrow from 'binary-components/lib/DownArrow';
 import AssetPickerContainer from './AssetPickerContainer';
 
 export default class AssetPickerDropDown extends Component {
@@ -46,7 +46,7 @@ export default class AssetPickerDropDown extends Component {
         const { actions, index, selectedSymbol, selectedSymbolName } = this.props;
         const { dropdownShown } = this.state;
         return (
-            <div>
+            <div className="param-row">
                 <DropDown shown={dropdownShown} onClose={::this.onClose}>
                     <AssetPickerContainer
                         actions={actions}
@@ -55,7 +55,7 @@ export default class AssetPickerDropDown extends Component {
                     />
                 </DropDown>
                 <Label text="Asset" />
-                <div className="picker-label" onMouseDown={::this.openAssetPicker}>
+                <div className="picker-label param-field" onMouseDown={::this.openAssetPicker}>
                     {selectedSymbolName}
                     <DownArrow />
                 </div>

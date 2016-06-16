@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import windowResizeEvent from 'binary-utils/lib/windowResizeEvent';
 import isIntraday from 'binary-utils/lib/isIntraday';
 import askPriceFromProposal from 'binary-utils/lib/askPriceFromProposal';
 
-import ErrorMsg from '../_common/ErrorMsg';
+import ErrorMsg from 'binary-components/lib/ErrorMsg';
 import BarrierCard from '../barrier-picker/BarrierCard';
 // import SpreadBarrierCard from '../barrier-picker/SpreadBarrierCard';
 import DigitBarrierCard from '../barrier-picker/DigitBarrierCard';
@@ -113,6 +114,7 @@ export default class TradeParams extends Component {
             }
             this.onAssetChange();
         }
+        windowResizeEvent();
     }
 
     componentWillUnmount() {
@@ -227,8 +229,7 @@ export default class TradeParams extends Component {
 
     onPurchase() {
         const { actions, index, onPurchaseHook } = this.props;
-        onPurchaseHook();
-        actions.purchaseByTradeId(index);
+        actions.purchaseByTradeId(index).then(onPurchaseHook);
     }
 
     render() {
@@ -347,7 +348,7 @@ export default class TradeParams extends Component {
                 }
                 {!showSpreadBarrier &&
                     <StakeCard
-                        amount={tradeParams.amount.toString()}
+                        amount={+tradeParams.amount}
                         basis={tradeParams.basis}
                         currency={currency}
                         id={index}
@@ -355,7 +356,11 @@ export default class TradeParams extends Component {
                         onBasisChange={this.onBasisChange}
                     />
                 }
-                {payout && <PayoutCard stake={askPriceFromProposal(proposal)} payout={payout} currency={currency} />}
+                <PayoutCard
+                    stake={askPriceFromProposal(proposal)}
+                    payout={payout}
+                    currency={currency}
+                />
                 <BuyButton
                     askPrice={askPriceFromProposal(proposal)}
                     currency={currency}

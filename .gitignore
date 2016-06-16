@@ -9,3 +9,6 @@ npm-debug.log
 .publish/
 plugins
 platforms
+www/styles.css
+www/styles.css.map
+

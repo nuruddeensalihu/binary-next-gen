@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import Tab from '../_common/Tab';
-import TabList from '../_common/TabList';
+import Tab from 'binary-components/lib/Tab';
+import TabList from 'binary-components/lib/TabList';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsPersonalDetails from './SettingsPersonalDetails';
 import SettingsSecurity from './SettingsSecurity';
@@ -38,9 +38,8 @@ export default class SettingsCard extends Component {
 		const ActiveComponent = components[activeTab];
 
 		return (
-			<div>
+			<div className="settings-card">
 				<TabList
-					className="inverse"
 					activeIndex={activeTab}
 					onChange={idx => this.setState({ activeTab: idx })}
 				>

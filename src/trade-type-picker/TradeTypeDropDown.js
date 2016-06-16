@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import tradeToFriendlyType from 'binary-utils/lib/tradeToFriendlyType';
-import Label from '../_common/Label';
-import Info from '../_common/Info';
-import DownArrow from '../_common/DownArrow';
+import Label from 'binary-components/lib/Label';
+import Info from 'binary-components/lib/Info';
+import DownArrow from 'binary-components/lib/DownArrow';
 import DropDown from '../containers/DropDown';
 import TradeTypePicker from './TradeTypePicker';
 import helpText from './helpText';
@@ -56,7 +56,7 @@ export default class TradeTypeDropDown extends Component {
         const selectedType = getInternalTradeType(tradeParams);
         const { dropdownShown } = this.state;
         return (
-            <div>
+            <div className="param-row">
                 <DropDown
                     shown={dropdownShown}
                     onClose={() => this.setState({ dropdownShown: false })}
@@ -69,7 +69,7 @@ export default class TradeTypeDropDown extends Component {
                 <Label text="Trade Type" />
                 <Info tooltip={helpText[selectedType]} role="presentation" />
                 <div
-                    className="picker-label"
+                    className="picker-label param-field"
                     onMouseDown={::this.openTradeTypePicker}
                 >
                     <img

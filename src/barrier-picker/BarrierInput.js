@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
-import InputGroup from '../_common/InputGroup';
+import InputGroup from 'binary-components/lib/InputGroup';
 import pipSizeToStepSize from 'binary-utils/lib/pipSizeToStepSize';
 
 export default class BarrierInput extends Component {
@@ -26,7 +26,6 @@ export default class BarrierInput extends Component {
         const absoluteValue = expiryType === 'daily' ? value : spot && (+value + spot);
 
         return (
-
                 <InputGroup
                     autoFocus
                     label={name + (barrierType === 'relative' ? ' offset' : '')}

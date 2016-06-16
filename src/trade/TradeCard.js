@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { BinaryChart } from 'binary-charts';
 import findDeep from 'binary-utils/lib/findDeep';
 import filterObjectBy from 'binary-utils/lib/filterObjectBy';
-import PurchaseFailed from '../_common/PurchaseFailed';
+import PurchaseFailed from 'binary-components/lib/PurchaseFailed';
 import Modal from '../containers/Modal';
 import TradeParams from '../trade-params/TradeParams';
 import ContractReceipt from '../contract-details/ContractReceipt';
@@ -34,7 +34,7 @@ const zoomToLatest = chart => {
     const { min, max, dataMax } = chart.xAxis[0].getExtremes();
     if (min && max) {
         const frameSize = max - min;
-        chart.xAxis[0].setExtremes(dataMax - frameSize, dataMax);
+        chart.xAxis[0].setExtremes(dataMax - frameSize + 500, dataMax);
     }
 };
 
@@ -176,18 +176,19 @@ export default class TradeCard extends Component {
                 >
                     <PurchaseFailed failure={tradeErrors.purchaseError} />
                 </Modal>
-                {/* {lastBoughtContract && <h5>{lastBoughtContract.longcode}</h5>} */}
                 <div className="trade-chart-container">
                     <BinaryChart
                         id={`trade-chart${index}`}
                         className="trade-chart"
                         contract={contractRequiredByChart}
+                        defaultRange={1}
                         events={events}
                         noData={feedLicense === 'chartonly'}
                         pipSize={pipSize}
                         rangeChange={contractRequiredByChart ? undefined : rangeChange}
                         symbol={symbolName}
                         ticks={dataToShow}
+                        theme="light"
                         type={contractDataExist ? 'area' : chartType}
                         trade={tradeRequiredByChart}
                         typeChange={feedLicense !== 'chartonly' && ::this.changeChartType}
@@ -198,6 +199,7 @@ export default class TradeCard extends Component {
                     <ContractReceipt
                         actions={actions}
                         contract={lastBoughtContract}
+                        showLongcode
                         onTradeAgainClicked={() => actions.closeContractReceipt(index)}
                     /> :
                     <TradeParams

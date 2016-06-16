@@ -52,7 +52,7 @@ export default class ContractDetailsCard extends Component {
 			actions.getDataForContract(contract.contract_id, count, durationType, dataType);
 
 		return (
-			<div>
+			<div className="contract-details-card">
 				<h5>{contract.longcode}</h5>
 				<div className="contract-details">
 					<BinaryChart
@@ -61,6 +61,7 @@ export default class ContractDetailsCard extends Component {
 						contract={contract}
 						ticks={data}
 						type={chartType}
+						theme="light"
 						rangeChange={contract ? undefined : rangeChange}
 						typeChange={allowCandle && ::this.changeChartType}
 						pipSize={pipSize}

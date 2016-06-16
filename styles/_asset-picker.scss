@@ -1,0 +1,32 @@
+.asset-picker-filter {
+    min-height: 5rem;
+}
+
+.asset-picker-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    width: 16rem;
+    min-width: 12rem;
+}
+
+.asset-list {
+    overflow: auto;
+    tr {
+        cursor: pointer;
+    }
+    tbody tr.selected {
+        background-color: rgba($COLOR_BRAND_BLUE, .25);
+    }
+}
+
+.asset-search {
+    width: 100%;
+    > input {
+        width: 100%;
+    }
+}
+
+.asset-picker-item td {
+    text-align: left;
+}

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import durationText from 'binary-utils/lib/durationText';
-import Label from '../_common/Label';
+import Label from 'binary-components/lib/Label';
 import DurationUnitPicker from './DurationUnitPicker';
 
 export default class DurationCard extends Component {
@@ -62,10 +62,7 @@ export default class DurationCard extends Component {
     }
 
     updateDurationUnit(e) {
-        const { onUnitChange, onError, duration } = this.props;
-        const newDurationUnit = e.target.value;
-        const err = this.validateDuration(duration, newDurationUnit);
-        onError(err);
+        const { onUnitChange } = this.props;
         onUnitChange(e);
     }
 
@@ -101,9 +98,9 @@ export default class DurationCard extends Component {
         if (!currentUnitBlock) return null;
 
         return (
-            <div className="duration-picker">
+            <div className="param-row duration-picker">
                 <Label text="Duration" />
-                <div className="duration-input">
+                <div className="duration-input param-field">
                     <input
                         type="number"
                         value={duration}
