@@ -2,6 +2,10 @@
 'use strict';
 
 (function init() {
+    // clean stale data in local storage
+    localStorage.removeItem('assets');
+    localStorage.removeItem('settings');
+
     var defaultConfig = {
         language: 'EN',
         theme: 'light',
@@ -52,13 +56,12 @@
     }
 
 
-
     var apiUrl = 'wss://ws.binaryws.com/websockets/v3';
 
     readConfig();
     parseUrlAndStoreAccountInfo(window.location.href);
     window.BinaryBoot.parseUrl = parseOAuthResponse;
-    window.BinaryBoot.appId = 1263;
+    window.BinaryBoot.appId = window.cordova ? 1006 : 1001;
     var lang = window.BinaryBoot.language;
 
     var redirectIndex = window.location.href.indexOf('?');

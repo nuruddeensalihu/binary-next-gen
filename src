@@ -1,0 +1,5 @@
+Hash: 9a56cc72acac2de6f40c
+Version: webpack 1.12.14
+Time: 24ms
+
+ERROR in Entry module not found: Error: Cannot resolve 'file' or 'directory' ./src in /Users/nuru/git-repos/binary-next-gen/build
